@@ -19,7 +19,7 @@ All the scripts are developed and fully tested under AmigaOS 4.1 FE and MorphOS 
 * [Lbry.tv](https://lbry.tv/)
 
 ### A full list of requirements per OS:
-#### AmigaOS 4.1
+#### AmigaOS 4.1 [<img src="https://pbs.twimg.com/profile_images/2319157842/lxuzbb11861j2p9e53lt_400x400.png" width="20" height="20">](https://www.amigaos.net/)
 * [AmigaOS 4.1 FE upd1][amigaos]
 * Python 2.5
 * [Pythonssl][pythonssl]
@@ -28,10 +28,18 @@ All the scripts are developed and fully tested under AmigaOS 4.1 FE and MorphOS 
 * [mplayer][mplayer] for the online recorded videos, or something equivalent
 * internet access
 
-#### MorphOS 3.x
+#### MorphOS 3.x [<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Morph_os.jpg" width="20" height="20">](https://www.morphos-team.net/)
 * MorphOS 3.10 and above
 * Python 2.5 and above
 * Currently there is no suitable video player available on MorphOS, that could support the necessary streams. As soon as new video players are available, they can be used by aiostreams scripts.
+* internet access
+
+#### Windows 7+ [<img src="https://lh3.googleusercontent.com/proxy/GOp9vPBzwlkGTos8vN5s497h9WQgd7h6N9IUYBiuDH5mIUAdatfksDOddcfiRi8yobFyagCQLGequQaeDOmIqoz0djjRPSnShXzuQET-gh5NNqxzChcSFYRSJA" width="20" height="20">](https://www.microsoft.com/)
+* Python 2.5
+* internet access
+
+#### Linux [<img src="https://i.imgur.com/71FsbfV.png" width="20" height="20">](https://www.linux.org/)
+* Python 2.5
 * internet access
 
 ### Docker for development
@@ -44,6 +52,52 @@ docker run -it --rm --name aiostreams -v "$PWD":/usr/src/myapp -w /usr/src/myapp
 ```bash
 docker exec -it aiostreams bash
 python twitch.py
+```
+### Setup on cfg.py
+Incase of errors with the player make sure that your cfg.py has the following code that can be found in cfg.py.examples depending on the OS and the Player you want to use
+```bash
+# AmigaOS 4.1 FE video players
+vPlayer = "APPDIR:mplayer"
+vPlayerArgs = "-quiet -really-quiet -forceidx -framedrop -cache 8192"
+sPlayer = "APPDIR:ffplay"
+sPlayerArgs = "-loglevel quiet -infbuf -skip_loop_filter all -skip_frame noref"
+
+# AmigaOS 4.1 FE audio players
+aPlayer = "APPDIR:AmigaAmp3"
+aPlayerArgs = ""
+
+# AmigaOS 4.1 FE Emotion player
+vPlayer = "APPDIR:emotion"
+vPlayerArgs = ""
+sPlayer = "APPDIR:emotion"
+sPlayerArgs = ""
+aPlayer = "APPDIR:emotion"
+aPlayerArgs = ""
+
+# MacOS X video players
+vPlayer = "~/Applications/VLC.app/Contents/MacOS/VLC"
+vPlayerArgs = "-f --no-video-title-show 2> /dev/null"
+sPlayer = "~/Applications/VLC.app/Contents/MacOS/VLC"
+sPlayerArgs = "-f --no-video-title-show 2> /dev/null"
+aPlayer = "~/Applications/VLC.app/Contents/MacOS/VLC"
+aPlayerArgs = "-f --no-video-title-show 2> /dev/null"
+
+# Linux VLC player
+vPlayer = "/usr/bin/vlc"
+vPlayerArgs = "-f --no-video-title-show 2> /dev/null"
+sPlayer = "/usr/bin/vlc"
+sPlayerArgs = "-f --no-video-title-show 2> /dev/null"
+aPlayer = "/usr/bin/vlc"
+aPlayerArgs = "-f --no-video-title-show 2> /dev/null"
+
+# Linux MPV player
+vPlayer = "/usr/bin/mpv"
+vPlayerArgs = "--title='aiostreams' --really-quiet"
+sPlayer = "/usr/bin/mpv"
+sPlayerArgs = "--title='aiostreams' --really-quiet"
+aPlayer = "/usr/bin/mpv"
+aPlayerArgs = "--title='aiostreams' --really-quiet"
+
 ```
 
 [pythonssl]: http://os4depot.net/?function=showfile&file=library/misc/pythonssl.lha
