@@ -54,7 +54,7 @@ docker exec -it aiostreams bash
 python twitch.py
 ```
 ### Setup on cfg.py
-Incase of errors with the player make sure that your cfg.py has the following code that can be found in cfg.py.examples depending on the OS and the Player you want to use
+Incase of errors with the player make sure that your cfg.py has the following code that can be found in cfg.py.examples depending on the OS and the Player you want to use. Make sure that the code is pasted at the bottom of the cfg.py file
 ```bash
 # AmigaOS 4.1 FE video players
 vPlayer = "APPDIR:mplayer"
